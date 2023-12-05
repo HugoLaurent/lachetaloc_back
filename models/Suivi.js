@@ -6,7 +6,7 @@ const Suivi = sequelize.define("Suivi", {
     type: datatypes.INTEGER,
     allowNull: false,
   },
-  user_id: {
+  utilisateur_id: {
     type: datatypes.INTEGER,
     allowNull: false,
   },

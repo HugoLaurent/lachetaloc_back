@@ -1,8 +1,8 @@
 const { datatypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Logement = sequelize.define(
-  "Logement",
+const Notification = sequelize.define(
+  "Notification",
   {
     id: {
       type: datatypes.INTEGER,
@@ -13,37 +13,26 @@ const Logement = sequelize.define(
       type: datatypes.STRING,
       allowNull: false,
     },
-    prix: {
-      type: datatypes.INTEGER,
-      allowNull: false,
-    },
     description: {
       type: datatypes.STRING,
       allowNull: false,
     },
-    photo: {
-      type: datatypes.STRING,
+    lu: {
+      type: datatypes.BOOLEAN,
       allowNull: true,
-    },
-    piece_id: {
-      type: datatypes.INTEGER,
-      allowNull: false,
+      defaultValue: false,
     },
     utilisateur_id: {
       type: datatypes.INTEGER,
       allowNull: false,
     },
-    localisation_id: {
-      type: datatypes.INTEGER,
-      allowNull: false,
-    },
   },
   {
-    tableName: "logement",
+    tableName: "Notification",
     timestamps: true,
     createdAt: "created_at",
     updatedAt: "updated_at",
   }
 );
 
-module.exports = Logement;
+module.exports = Notification;
