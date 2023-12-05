@@ -10,21 +10,39 @@ const Piece = require("./Piece");
 Logement.hasOne(Localisation, {
   foreignKey: "logement_id",
 });
+Localisation.belongsTo(Logement, {
+  foreignKey: "logement_id",
+});
+
 Logement.hasOne(Piece, {
   foreignKey: "logement_id",
 });
+Piece.belongsTo(Logement, {
+  foreignKey: "logement_id",
+});
+
 Logement.hasMany(Suivi, {
   foreignKey: "logement_id",
 });
-Logement.hasOne(Utilisateur, {
+Suivi.belongsTo(Logement, {
+  foreignKey: "logement_id",
+});
+
+Logement.belongsTo(Utilisateur, {
   foreignKey: "utilisateur_id",
 });
 
 Utilisateur.hasMany(Suivi, {
   foreignKey: "utilisateur_id",
 });
+Suivi.belongsTo(Utilisateur, {
+  foreignKey: "utilisateur_id",
+});
 
 Utilisateur.hasMany(Notification, {
+  foreignKey: "utilisateur_id",
+});
+Notification.belongsTo(Utilisateur, {
   foreignKey: "utilisateur_id",
 });
 
