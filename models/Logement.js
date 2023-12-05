@@ -13,6 +13,10 @@ const Logement = sequelize.define(
       type: datatypes.STRING,
       allowNull: false,
     },
+    bail: {
+      type: datatypes.DATE,
+      allowNull: false,
+    },
     prix: {
       type: datatypes.INTEGER,
       allowNull: false,
