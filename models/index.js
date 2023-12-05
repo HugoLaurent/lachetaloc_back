@@ -7,35 +7,28 @@ const Piece = require("./Piece");
 
 // Relation entre les tables
 
-Logement.hasOne(Localisation, {
-  foreignKey: "logement_id",
+Logement.belongsTo(Localisation, {
+  foreignKey: "localisation_id",
 });
-Localisation.belongsTo(Logement, {
-  foreignKey: "logement_id",
-});
-
-Logement.hasOne(Piece, {
-  foreignKey: "logement_id",
-});
-Piece.belongsTo(Logement, {
-  foreignKey: "logement_id",
+Localisation.hasMany(Logement, {
+  foreignKey: "localisation_id",
 });
 
-Logement.hasMany(Suivi, {
-  foreignKey: "logement_id",
+Logement.belongsTo(Piece, {
+  foreignKey: "piece_id",
 });
-Suivi.belongsTo(Logement, {
-  foreignKey: "logement_id",
+Piece.hasMany(Logement, {
+  foreignKey: "piece_id",
 });
+
+Logement.belongsToMany(Utilisateur, { through: Suivi });
+Utilisateur.belongsToMany(Logement, { through: Suivi });
 
 Logement.belongsTo(Utilisateur, {
   foreignKey: "utilisateur_id",
 });
 
-Utilisateur.hasMany(Suivi, {
-  foreignKey: "utilisateur_id",
-});
-Suivi.belongsTo(Utilisateur, {
+Utilisateur.hasMany(Logement, {
   foreignKey: "utilisateur_id",
 });
 

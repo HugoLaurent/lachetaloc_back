@@ -24,15 +24,10 @@ const Notification = sequelize.define(
     },
     utilisateur_id: {
       type: datatypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
-  {
-    tableName: "Notification",
-    timestamps: true,
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-  }
+  { timestamps: false, tableName: "notification" }
 );
 
 module.exports = Notification;

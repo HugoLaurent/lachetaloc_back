@@ -3,8 +3,8 @@ const Logement = require("../models/Logement");
 const logementController = {
   getAllLogement: async (req, res) => {
     try {
-      const logements = await Logement.findAll();
-      res.json(logements);
+      const response = await Logement.findAll();
+      res.json(response);
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);
