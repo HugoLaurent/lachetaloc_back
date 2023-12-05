@@ -1,4 +1,4 @@
-const Logement = require("../models/logementModel");
+const Logement = require("../models/Logement");
 
 const logementController = {
   getAllLogement: async (req, res) => {
