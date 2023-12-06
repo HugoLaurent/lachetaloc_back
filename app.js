@@ -8,6 +8,8 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+app.use(express.json());
+
 app.use("/accomodations", routerAccomodation);
 
 app.use("/users", routerUser);
