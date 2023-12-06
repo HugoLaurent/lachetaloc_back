@@ -1,15 +1,15 @@
-const { datatypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 const follow = sequelize.define(
   "follow",
   {
     accomodation_id: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
     user_id: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

@@ -1,20 +1,20 @@
-const { datatypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 const location = sequelize.define(
   "location",
   {
     id: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     departement: {
-      type: datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     code: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },

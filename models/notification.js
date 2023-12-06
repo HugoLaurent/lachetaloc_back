@@ -1,29 +1,29 @@
-const { datatypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 const notification = sequelize.define(
   "notification",
   {
     id: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     title: {
-      type: datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
-      type: datatypes.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     read: {
-      type: datatypes.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       allowNull: true,
       defaultValue: false,
     },
     user: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   },

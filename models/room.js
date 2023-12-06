@@ -1,16 +1,16 @@
-const { datatypes } = require("sequelize");
+const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
 const room = sequelize.define(
   "room",
   {
     id: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     room: {
-      type: datatypes.INTEGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
