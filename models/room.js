@@ -1,24 +1,20 @@
 const { datatypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Localisation = sequelize.define(
-  "Localisation",
+const room = sequelize.define(
+  "room",
   {
     id: {
       type: datatypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    departement: {
-      type: datatypes.STRING,
-      allowNull: false,
-    },
-    code: {
+    room: {
       type: datatypes.INTEGER,
       allowNull: false,
     },
   },
-  { timestamps: false, tableName: "localisation" }
+  { timestamps: false, tableName: "room" }
 );
 
-module.exports = Localisation;
+module.exports = room;

@@ -1,20 +1,19 @@
 const { datatypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Piece = sequelize.define(
-  "Piece",
+const follow = sequelize.define(
+  "follow",
   {
-    id: {
+    accomodation_id: {
       type: datatypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+      allowNull: false,
     },
-    piece: {
+    user_id: {
       type: datatypes.INTEGER,
       allowNull: false,
     },
   },
-  { timestamps: false, tableName: "piece" }
+  { timestamps: false, tableName: "follow" }
 );
 
-module.exports = Piece;
+module.exports = follow;

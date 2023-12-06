@@ -1,51 +1,51 @@
 CREATE TABLE
-    IF NOT EXISTS "piece" (
+    IF NOT EXISTS "room" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        "nombre" INTEGER NOT NULL
+        "room" INTEGER NOT NULL
     );
 
 CREATE TABLE
-    IF NOT EXISTS "localisation" (
+    IF NOT EXISTS "location" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         "departement" TEXT,
         "code" INTEGER NOT NULL
     );
 
 CREATE TABLE
-    IF NOT EXISTS "utilisateur" (
+    IF NOT EXISTS "user" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         "email" TEXT UNIQUE NOT NULL,
         "pseudo" TEXT UNIQUE NOT NULL NOT NULL,
-        "mot_de_passe" TEXT NOT NULL
+        "password" TEXT NOT NULL
     );
 
 CREATE TABLE
     IF NOT EXISTS "notification" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        "titre" TEXT NOT NULL,
+        "title" TEXT NOT NULL,
         "message" TEXT NOT NULL,
-        "lu" BOOLEAN DEFAULT FALSE NOT NULL,
-        "utilisateur_id" INTEGER NOT NULL REFERENCES utilisateur(id) ON DELETE CASCADE
+        "read" BOOLEAN DEFAULT FALSE NOT NULL,
+        "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
-    IF NOT EXISTS "logement" (
+    IF NOT EXISTS "accomodation" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        "titre" TEXT NOT NULL,
-        "bail" DATE NOT NULL,
-        "prix" INTEGER NOT NULL,
+        "title" TEXT NOT NULL,
+        "end_of_contract" DATE NOT NULL,
+        "price" INTEGER NOT NULL,
         "description" TEXT NOT NULL,
-        "photo" TEXT NOT NULL,
-        "piece_id" INTEGER NOT NULL REFERENCES piece(id) ON DELETE CASCADE,
-        "utilisateur_id" INTEGER REFERENCES utilisateur(id) ON DELETE
+        "picture" TEXT NOT NULL,
+        "room_id" INTEGER NOT NULL REFERENCES room(id) ON DELETE CASCADE,
+        "user_id" INTEGER REFERENCES "user"(id) ON DELETE
         SET
             NULL,
-            "localisation_id" INTEGER NOT NULL REFERENCES localisation(id) ON DELETE CASCADE
+            "location_id" INTEGER NOT NULL REFERENCES location(id) ON DELETE CASCADE
     );
 
 CREATE TABLE
-    IF NOT EXISTS "suivi" (
+    IF NOT EXISTS "follow" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        "utilisateur_id" INTEGER NOT NULL REFERENCES utilisateur(id) ON DELETE CASCADE,
-        "logement_id" INTEGER NOT NULL REFERENCES logement(id) ON DELETE CASCADE
+        "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+        "accomodation_id" INTEGER NOT NULL REFERENCES accomodation(id) ON DELETE CASCADE
     );

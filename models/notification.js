@@ -1,15 +1,15 @@
 const { datatypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Notification = sequelize.define(
-  "Notification",
+const notification = sequelize.define(
+  "notification",
   {
     id: {
       type: datatypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    titre: {
+    title: {
       type: datatypes.STRING,
       allowNull: false,
     },
@@ -17,12 +17,12 @@ const Notification = sequelize.define(
       type: datatypes.STRING,
       allowNull: false,
     },
-    lu: {
+    read: {
       type: datatypes.BOOLEAN,
       allowNull: true,
       defaultValue: false,
     },
-    utilisateur_id: {
+    user: {
       type: datatypes.INTEGER,
       allowNull: true,
     },
@@ -30,4 +30,4 @@ const Notification = sequelize.define(
   { timestamps: false, tableName: "notification" }
 );
 
-module.exports = Notification;
+module.exports = notification;

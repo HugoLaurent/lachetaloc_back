@@ -1,49 +1,47 @@
-const Localisation = require("./Localisation");
-const Suivi = require("./Suivi");
-const Utilisateur = require("./Utilisateur");
-const Logement = require("./Logement");
-const Notification = require("./Notification");
-const Piece = require("./Piece");
+const location = require("./location");
+const follow = require("./follow");
+const user = require("./user");
+const accomodation = require("./accomodation");
+const notification = require("./notification");
+const room = require("./room");
 
-// Relation entre les tables
-
-Logement.belongsTo(Localisation, {
-  foreignKey: "localisation_id",
+accomodation.belongsTo(location, {
+  foreignKey: "location_id",
 });
-Localisation.hasMany(Logement, {
-  foreignKey: "localisation_id",
+location.hasMany(accomodation, {
+  foreignKey: "location_id",
 });
 
-Logement.belongsTo(Piece, {
-  foreignKey: "piece_id",
+accomodation.belongsTo(room, {
+  foreignKey: "room_id",
 });
-Piece.hasMany(Logement, {
-  foreignKey: "piece_id",
-});
-
-Logement.belongsToMany(Utilisateur, { through: Suivi });
-Utilisateur.belongsToMany(Logement, { through: Suivi });
-
-Logement.belongsTo(Utilisateur, {
-  foreignKey: "utilisateur_id",
+room.hasMany(accomodation, {
+  foreignKey: "room_id",
 });
 
-Utilisateur.hasMany(Logement, {
-  foreignKey: "utilisateur_id",
+accomodation.belongsToMany(user, { through: follow });
+user.belongsToMany(accomodation, { through: follow });
+
+accomodation.belongsTo(user, {
+  foreignKey: "user_id",
 });
 
-Utilisateur.hasMany(Notification, {
-  foreignKey: "utilisateur_id",
+user.hasMany(accomodation, {
+  foreignKey: "user_id",
 });
-Notification.belongsTo(Utilisateur, {
-  foreignKey: "utilisateur_id",
+
+user.hasMany(notification, {
+  foreignKey: "user_id",
+});
+notification.belongsTo(user, {
+  foreignKey: "user_id",
 });
 
 module.exports = {
-  Localisation,
-  Suivi,
-  Utilisateur,
-  Logement,
-  Notification,
-  Piece,
+  location,
+  follow,
+  user,
+  accomodation,
+  notification,
+  room,
 };

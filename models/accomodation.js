@@ -1,23 +1,23 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const Logement = sequelize.define(
-  "Logement",
+const accomodation = sequelize.define(
+  "accomodation",
   {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    titre: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    bail: {
+    end_of_contract: {
       type: DataTypes.DATE,
       allowNull: false,
     },
-    prix: {
+    price: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -25,24 +25,24 @@ const Logement = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    photo: {
+    picture: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    piece_id: {
+    room_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    utilisateur_id: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    localisation_id: {
+    location_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
   },
-  { timestamps: false, tableName: "logement" }
+  { timestamps: false, tableName: "accomodation" }
 );
 
-module.exports = Logement;
+module.exports = accomodation;

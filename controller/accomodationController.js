@@ -1,29 +1,29 @@
-const Logement = require("../models/Logement");
+const accomodation = require("../models/accomodation");
 
-const logementController = {
-  getOneLogement: async (req, res) => {
+const accomodationController = {
+  getOneAccomodation: async (req, res) => {
     try {
-      const response = await Logement.findByPk(req.params.id);
+      const response = await accomodation.findByPk(req.params.id);
       res.json(response);
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);
     }
   },
-  getAllLogement: async (req, res) => {
+  getAllAccomodation: async (req, res) => {
     try {
-      const response = await Logement.findAll();
+      const response = await accomodation.findAll();
       res.json(response);
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);
     }
   },
-  getLogementByUser: async (req, res) => {
+  getAccomodationByUser: async (req, res) => {
     try {
-      const response = await Logement.findAll({
+      const response = await accomodation.findAll({
         where: {
-          utilisateur_id: req.params.utilisateur,
+          user_id: req.params.user,
         },
       });
       if (response.length === 0 || typeof response === "undefined") {
@@ -38,11 +38,11 @@ const logementController = {
       res.status(500).json(error);
     }
   },
-  getLogementByRoom: async (req, res) => {
+  getAccomodationByRoom: async (req, res) => {
     try {
-      const response = await Logement.findAll({
+      const response = await accomodation.findAll({
         where: {
-          piece_id: req.params.piece,
+          room_id: req.params.room,
         },
       });
       if (response.length === 0 || typeof response === "undefined") {
@@ -59,11 +59,11 @@ const logementController = {
       res.status(500).json(error);
     }
   },
-  getLogementByLocalisation: async (req, res) => {
+  getAccomodationByLocation: async (req, res) => {
     try {
-      const response = await Logement.findAll({
+      const response = await logement.findAll({
         where: {
-          localisation_id: req.params.localisation,
+          location_id: req.params.location,
         },
       });
       if (response.length === 0 || typeof response === "undefined") {
@@ -80,4 +80,4 @@ const logementController = {
   },
 };
 
-module.exports = logementController;
+module.exports = accomodationController;
