@@ -49,11 +49,7 @@ const userController = {
     }
 
     try {
-      const response = await User.create({
-        pseudo: req.body.pseudo,
-        email: req.body.email,
-        password: req.body.password,
-      });
+      const response = await User.create(user);
       res.json(response);
     } catch (error) {
       console.trace(error);
