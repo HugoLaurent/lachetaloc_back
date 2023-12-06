@@ -40,7 +40,9 @@ CREATE TABLE
         "user_id" INTEGER REFERENCES "user"(id) ON DELETE
         SET
             NULL,
-            "location_id" INTEGER NOT NULL REFERENCES location(id) ON DELETE CASCADE
+            "location_id" INTEGER NOT NULL REFERENCES location(id) ON DELETE CASCADE,
+            "created_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+            "updated_at" TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
     );
 
 CREATE TABLE

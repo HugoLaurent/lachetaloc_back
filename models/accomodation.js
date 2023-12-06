@@ -42,7 +42,7 @@ const accomodation = sequelize.define(
       allowNull: false,
     },
   },
-  { timestamps: false, tableName: "accomodation" }
+  { tableName: "accomodation", underscored: true }
 );
 
 module.exports = accomodation;
