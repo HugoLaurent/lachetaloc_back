@@ -8,6 +8,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/logements", routerLogement);
+app.use("/logements/:id", routerLogement);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
