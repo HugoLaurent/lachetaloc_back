@@ -9,7 +9,7 @@ const Piece = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    prix: {
+    piece: {
       type: datatypes.INTEGER,
       allowNull: false,
     },
