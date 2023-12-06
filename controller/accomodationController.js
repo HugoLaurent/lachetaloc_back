@@ -61,7 +61,7 @@ const accomodationController = {
   },
   getAccomodationByLocation: async (req, res) => {
     try {
-      const response = await logement.findAll({
+      const response = await accomodation.findAll({
         where: {
           location_id: req.params.location,
         },
