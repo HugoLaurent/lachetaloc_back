@@ -1,6 +1,13 @@
 const { exec } = require("child_process");
 
-const dbconnection = "psql -U admin -d lachetaloc -f ";
+const dotenv = require("dotenv");
+dotenv.config();
+
+const user = process.env.DB_USER;
+const database = process.env.DB_DATABASE;
+const password = process.env.DB_PASSWORD;
+
+const dbconnection = `PGPASSWORD="${password}" psql -U ${user} -d ${database} -f `;
 const resetDb = "data/reset_db.sql";
 const createDb = "data/create_db.sql";
 const populateDb = "data/populate.sql";
