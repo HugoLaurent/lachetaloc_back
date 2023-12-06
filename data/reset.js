@@ -54,8 +54,10 @@ const populate = () => {
   });
 };
 
-reset().then(() => {
-  create().then(() => {
-    populate();
-  });
-});
+async function run() {
+  await reset();
+  await create();
+  await populate();
+}
+
+run();
