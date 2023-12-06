@@ -56,6 +56,16 @@ const userController = {
       res.status(500).json(error);
     }
   },
+  deleteAnUser: async (req, res) => {
+    try {
+      const response = await User.findByPk(req.params.id);
+      await response.destroy();
+      res.json("User deleted");
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = userController;
