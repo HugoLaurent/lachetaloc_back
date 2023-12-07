@@ -1,42 +1,37 @@
-const location = require("./location");
-const follow = require("./follow");
-const user = require("./user");
-const accomodation = require("./accomodation");
-const notification = require("./notification");
-const room = require("./room");
+import { Accomodation, User, Location, Room } from "../models";
 
-accomodation.belongsTo(location, {
+Accomodation.belongsTo(Location, {
   foreignKey: "location_id",
 });
-location.hasMany(accomodation, {
+Location.hasMany(Accomodation, {
   foreignKey: "location_id",
 });
 
-accomodation.belongsTo(room, {
+Accomodation.belongsTo(Room, {
   foreignKey: "room_id",
 });
-room.hasMany(accomodation, {
+Room.hasMany(Accomodation, {
   foreignKey: "room_id",
 });
 
-user.belongsToMany(accomodation, { through: "follow", foreignKey: "user_id" });
-accomodation.belongsToMany(user, {
+User.belongsToMany(Accomodation, { through: "follow", foreignKey: "user_id" });
+Accomodation.belongsToMany(User, {
   through: "follow",
   foreignKey: "accomodation_id",
 });
 
-accomodation.belongsTo(user, {
+Accomodation.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-user.hasMany(accomodation, {
+User.hasMany(Accomodation, {
   foreignKey: "user_id",
 });
 
-user.hasMany(notification, {
+User.hasMany(Notification, {
   foreignKey: "user_id",
 });
-notification.belongsTo(user, {
+Notification.belongsTo(User, {
   foreignKey: "user_id",
 });
 
@@ -44,7 +39,7 @@ module.exports = {
   location,
   follow,
   user,
-  accomodation,
+  Accomodation,
   notification,
   room,
 };

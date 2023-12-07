@@ -1,9 +1,9 @@
-const accomodation = require("../models/accomodation");
+const Accomodation = require("../models/accomodation");
 
 const accomodationController = {
   getOneAccomodation: async (req, res) => {
     try {
-      const response = await accomodation.findByPk(req.params.id);
+      const response = await Accomodation.findByPk(req.params.id);
       res.json(response);
     } catch (error) {
       console.trace(error);
@@ -12,7 +12,7 @@ const accomodationController = {
   },
   getAllAccomodation: async (req, res) => {
     try {
-      const response = await accomodation.findAll();
+      const response = await Accomodation.findAll();
       res.json(response);
     } catch (error) {
       console.trace(error);
@@ -21,7 +21,7 @@ const accomodationController = {
   },
   getAccomodationByUser: async (req, res) => {
     try {
-      const response = await accomodation.findAll({
+      const response = await Accomodation.findAll({
         where: {
           user_id: req.params.user,
         },
@@ -40,7 +40,7 @@ const accomodationController = {
   },
   getAccomodationByRoom: async (req, res) => {
     try {
-      const response = await accomodation.findAll({
+      const response = await Accomodation.findAll({
         where: {
           room_id: req.params.room,
         },
@@ -49,7 +49,7 @@ const accomodationController = {
         res
           .status(404)
           .json(
-            "Aucun logement avec le nombre de pièces demandé n'a été trouvé"
+            "Aucun logement Avec le nombre de pièces demandé n'a été trouvé"
           );
       } else {
         res.json(response);
@@ -61,7 +61,7 @@ const accomodationController = {
   },
   getAccomodationByLocation: async (req, res) => {
     try {
-      const response = await accomodation.findAll({
+      const response = await Accomodation.findAll({
         where: {
           location_id: req.params.location,
         },

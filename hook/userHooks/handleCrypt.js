@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
-const user = require("../../models/user");
+const User = require("../../models/user");
 
-user.beforeCreate((user, options) => {
+User.beforeCreate((user, options) => {
   if (user.changed("password")) {
     const hashedPassword = bcrypt.hashSync(user.password, 10);
     user.password = hashedPassword;
@@ -9,5 +9,5 @@ user.beforeCreate((user, options) => {
 });
 
 module.exports = {
-  userHooks: user,
+  userHooks: User,
 };

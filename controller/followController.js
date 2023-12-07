@@ -1,11 +1,11 @@
-const follow = require("../models/follow");
+const Follow = require("../models/follow");
 const accomodation = require("../models/accomodation");
 const { Op } = require("sequelize");
 
 const followController = {
   followAccomodation: async (req, res) => {
     try {
-      await follow.create({
+      await Follow.create({
         user_id: req.user.id,
         accomodation_id: req.params.id,
       });
@@ -17,7 +17,7 @@ const followController = {
   },
   getAccomodationFollowed: async (req, res) => {
     try {
-      const response = await follow.findAll({
+      const response = await Follow.findAll({
         where: {
           user_id: req.user.id,
         },
