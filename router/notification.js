@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get("/get", notificationController.getNotificationsByUser);
 router.post("/create", notificationController.createNotification);
+router.put("/read/:id", notificationController.notificationRead);
 
 module.exports = router;

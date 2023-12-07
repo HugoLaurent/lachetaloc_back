@@ -30,6 +30,24 @@ const notificationController = {
       res.status(500).json(error);
     }
   },
+  notificationRead: async (req, res) => {
+    try {
+      const notification = await Notification.update(
+        {
+          read: true,
+        },
+        {
+          where: {
+            id: req.params.id,
+          },
+        }
+      );
+      res.json(notification);
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = notificationController;
