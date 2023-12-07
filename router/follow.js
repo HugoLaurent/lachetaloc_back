@@ -4,6 +4,7 @@ const followController = require("../controller/followController");
 
 const router = express.Router();
 
-router.get("/:id", followController.getAccomodationFollowed);
+router.get("/", followController.getAccomodationFollowed);
+router.post("/:id", followController.followAccomodation);
 
 module.exports = router;

@@ -20,6 +20,9 @@ const user = sequelize.define(
     },
     password: {
       type: DataTypes.STRING,
+      get() {
+        return () => this.getDataValue("password");
+      },
       allowNull: false,
       set(value) {
         const hashedPassword = bcrypt.hashSync(value, 10);

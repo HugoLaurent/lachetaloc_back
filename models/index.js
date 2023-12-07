@@ -19,8 +19,11 @@ room.hasMany(accomodation, {
   foreignKey: "room_id",
 });
 
-accomodation.belongsToMany(user, { through: follow });
-user.belongsToMany(accomodation, { through: follow });
+user.belongsToMany(accomodation, { through: "follow", foreignKey: "user_id" });
+accomodation.belongsToMany(user, {
+  through: "follow",
+  foreignKey: "accomodation_id",
+});
 
 accomodation.belongsTo(user, {
   foreignKey: "user_id",

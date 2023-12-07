@@ -29,6 +29,19 @@ const userController = {
       return;
     }
 
+    const pseudoAlreadyExist = await User.findOne({
+      where: {
+        pseudo: user.pseudo,
+      },
+    });
+    if (pseudoAlreadyExist) {
+      res.status(409).json({
+        code: 409,
+        message: "The pseudo already exist",
+      });
+      return;
+    }
+
     const regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
     if (!regexEmail.test(user.email)) {
       res.status(422).json({
@@ -38,7 +51,9 @@ const userController = {
       return;
     }
 
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{12,}$/;
+    // le regex password doit contenir une minuscule une majuscule un caractere special et un chiffre et aussi 12 caracteres minimum
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{12,}$/;
+
     if (!regexPassword.test(user.password)) {
       res.status(422).json({
         code: 422,
