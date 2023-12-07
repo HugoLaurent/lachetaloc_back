@@ -1,6 +1,36 @@
 const Accomodation = require("../models/accomodation");
 
 const accomodationController = {
+  createAccomodation: async (req, res) => {
+    //Verifie si l'utilisateur est bien connecté
+    const { title, description, price, rooms, location_id, room_id } = req.body;
+    if (
+      title === undefined ||
+      description === undefined ||
+      price === undefined ||
+      rooms === undefined ||
+      location_id === undefined ||
+      room_id === undefined
+    ) {
+      res.status(400).json("Veuillez remplir tous les champs");
+    }
+
+    try {
+      const accomodation = await Accomodation.create({
+        title: req.body.title,
+        description: req.body.description,
+        price: req.body.price,
+        rooms: req.body.rooms,
+        location_id: req.body.location_id,
+        room_id: req.body.room_id,
+        user_id: req.user.id,
+      });
+      res.json(accomodation);
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
   getOneAccomodation: async (req, res) => {
     try {
       const response = await Accomodation.findByPk(req.params.id);
