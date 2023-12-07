@@ -1,12 +1,11 @@
 const follow = require("../models/follow");
 const accomodation = require("../models/accomodation");
-const user = require("../models/user");
 const { Op } = require("sequelize");
 
 const followController = {
   followAccomodation: async (req, res) => {
     try {
-      const response = await follow.create({
+      await follow.create({
         user_id: req.user.id,
         accomodation_id: req.params.id,
       });
