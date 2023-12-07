@@ -7,6 +7,7 @@ const authRouter = require("./router/auth");
 const routerUser = require("./router/user");
 const routerFollow = require("./router/follow");
 const routerAccomodation = require("./router/accomodation");
+const routerNotification = require("./router/notification");
 const authenticateToken = require("./hook/auth/authenticateToken");
 
 const app = express();
@@ -24,6 +25,8 @@ app.use("/users", routerUser);
 app.use("/follows", authenticateToken, routerFollow);
 
 app.use("/auth", authRouter);
+
+app.use("/notifications", authenticateToken, routerNotification);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

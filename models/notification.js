@@ -13,7 +13,7 @@ const notification = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    message: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -22,7 +22,7 @@ const notification = sequelize.define(
       allowNull: true,
       defaultValue: false,
     },
-    user: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
