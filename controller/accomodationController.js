@@ -176,6 +176,26 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
+  deletePersonalInformation: async (req, res) => {
+    console.log(req.user.id);
+    //fais moi une fonction qui change les champs title en 'toNotDisplay'
+    try {
+      const accomodation = await Accomodation.findByPk(req.params.id);
+      if (accomodation.user_id === req.user.id) {
+        await accomodation.update({
+          user_id: 1,
+        });
+        res.json("Les informations personnelles ont bien été supprimées");
+      } else {
+        res
+          .status(403)
+          .json("Vous n'êtes pas autorisé à effectuer cette action");
+      }
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = accomodationController;

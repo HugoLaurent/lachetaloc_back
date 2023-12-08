@@ -13,5 +13,6 @@ router.get(
 );
 router.get("/user/:user", accomodationController.getAccomodationByUser);
 router.post("/create", accomodationController.createAccomodation);
+router.put("/delete/:id", accomodationController.deletePersonalInformation);
 
 module.exports = router;
