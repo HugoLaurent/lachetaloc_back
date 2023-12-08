@@ -9,13 +9,12 @@ const routerFollow = require("./router/follow");
 const routerAccomodation = require("./router/accomodation");
 const routerNotification = require("./router/notification");
 const authenticateToken = require("./hook/auth/authenticateToken");
+const publicController = require("./controller/publicController");
 
 const app = express();
 app.use(express.json());
 
-app.use("/", (req, res) => {
-  res.send("Welcome to the API");
-});
+app.use("/", publicController.getAllAccomodation);
 
 app.use("/accomodations", authenticateToken, routerAccomodation);
 
