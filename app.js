@@ -13,6 +13,10 @@ const authenticateToken = require("./hook/auth/authenticateToken");
 const app = express();
 app.use(express.json());
 
+app.use("/", (req, res) => {
+  res.send("Welcome to the API");
+});
+
 app.use("/accomodations", authenticateToken, routerAccomodation);
 
 app.use("/users", routerUser);
