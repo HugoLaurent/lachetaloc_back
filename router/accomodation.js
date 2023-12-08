@@ -12,5 +12,6 @@ router.get(
   accomodationController.getAccomodationByLocation
 );
 router.get("/user/:user", accomodationController.getAccomodationByUser);
+router.post("/create", accomodationController.createAccomodation);
 
 module.exports = router;

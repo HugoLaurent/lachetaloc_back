@@ -1,20 +1,7 @@
 const express = require("express");
-const multer = require("multer");
-const path = require("path");
+
 const dotenv = require("dotenv");
 dotenv.config();
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./images/pictures");
-  },
-  filename: (req, file, cb) => {
-    console.log(file);
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage: storage });
 
 const authRouter = require("./router/auth");
 const routerUser = require("./router/user");
@@ -26,22 +13,7 @@ const authenticateToken = require("./hook/auth/authenticateToken");
 const app = express();
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  //affiche moi une page html avec un upload button
-  res.send(`
-    <h1>Upload file</h1>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-      <input type="file" name="image" />
-      <input type="submit" value="Upload" />
-    </form>
-  `);
-});
-
-app.post("/upload", upload.single("image"), (req, res) => {
-  res.send("File uploaded");
-});
-
-app.use("/accomodations", routerAccomodation);
+app.use("/accomodations", authenticateToken, routerAccomodation);
 
 app.use("/users", routerUser);
 

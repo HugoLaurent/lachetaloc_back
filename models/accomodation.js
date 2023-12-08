@@ -13,16 +13,16 @@ const accomodation = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     end_of_contract: {
       type: DataTypes.DATE,
       allowNull: false,
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.STRING,
       allowNull: false,
     },
     picture: {
