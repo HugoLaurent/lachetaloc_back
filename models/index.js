@@ -1,4 +1,9 @@
-import { Accomodation, User, Location, Room } from "../models";
+const Accomodation = require("./accomodation");
+const Follow = require("./follow");
+const Location = require("./location");
+const Notification = require("./notification");
+const Room = require("./room");
+const User = require("./user");
 
 // Relation entre Accomodation (Logement) et Location (Localisation)
 Accomodation.belongsTo(Location, {
@@ -61,5 +66,6 @@ module.exports = {
   Room,
   User,
   Accomodation,
+  Follow,
   Notification,
 };

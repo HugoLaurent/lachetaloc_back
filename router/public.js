@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.get("/allAccomodation", publicController.getAllAccomodation);
 router.get("/getImage/:id", publicController.sendImageToClient);
+router.get("/getLocation/:id", publicController.getLocation);
 
 module.exports = router;
