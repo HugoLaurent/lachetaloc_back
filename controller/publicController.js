@@ -1,5 +1,4 @@
-const { log } = require("console");
-const Accomodation = require("../models/accomodation");
+const { Location, Accomodation } = require("../models");
 const path = require("path");
 
 const publicController = {
@@ -29,7 +28,17 @@ const publicController = {
    */
   getAllAccomodation: async (req, res) => {
     try {
-      const response = await Accomodation.findAll();
+      const response = await Accomodation.findAll(
+        //fais moi la jointure avec la table location pour recuperer departement avec l'id
+        {
+          include: [
+            {
+              model: Location,
+              attributes: ["departement"],
+            },
+          ],
+        }
+      );
       res.json(response);
     } catch (error) {
       console.trace(error);
@@ -79,6 +88,26 @@ const publicController = {
       } else {
         res.json(response);
       }
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
+  /**
+   * Fonction asynchrone pour récupérer le departement d'une location.
+   */
+  getLocation: async (req, res) => {
+    try {
+      const response = await Accomodation.findByPk(req.params.id);
+      if (response !== null) {
+        const locationId = response.dataValues.location_id;
+        const departement = await Location.findByPk(locationId);
+        if (departement !== null) {
+          console.log(departement.dataValues);
+          return res.json({ location: departement.dataValues.departement });
+        }
+      }
+      return res.status(404).json("Aucune location trouvée");
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);

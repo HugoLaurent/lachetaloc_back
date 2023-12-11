@@ -1,4 +1,4 @@
-const Accomodation = require("../models/accomodation");
+const { Accomodation } = require("../models");
 const multer = require("multer");
 const path = require("path");
 

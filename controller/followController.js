@@ -1,5 +1,4 @@
-const Follow = require("../models/follow");
-const Accommodation = require("../models/accomodation");
+const { Accomodation, Follow } = require("../models");
 const { Op } = require("sequelize");
 
 const followController = {
