@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const { response } = require("express");
 const jwt = require("jsonwebtoken");
 
 const authController = {
@@ -39,13 +40,25 @@ const authController = {
         { expiresIn: "7d" }
       );
 
-      console.log(token);
+      console.log(token, refreshToken);
       // Renvoie les jetons d'authentification
-      return { token, refreshToken };
-    } else {
-      // Si l'authentification échoue, renvoie un message d'erreur d'authentification
-      return { error: "Invalid Credentials" };
+      return res.json({ token, refreshToken });
     }
+    // Si l'authentification échoue, renvoie un message d'erreur d'authentification
+    return res.status(401).json({ error: "Invalid Credentials" });
+  },
+  refresh: (req, res) => {
+    const refreshToken = req.body.token;
+    if (!refreshToken) return res.sendStatus(401);
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+      if (err) return res.sendStatus(403);
+      const accessToken = jwt.sign(
+        { id: user.id, pseudo: user.pseudo },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: "1h" }
+      );
+      res.json({ accessToken });
+    });
   },
 };
 

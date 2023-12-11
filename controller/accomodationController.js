@@ -183,7 +183,7 @@ const accomodationController = {
       const accomodation = await Accomodation.findByPk(req.params.id);
       if (accomodation.user_id === req.user.id) {
         await accomodation.update({
-          user_id: 1,
+          user_id: null,
         });
         res.json("Les informations personnelles ont bien été supprimées");
       } else {
