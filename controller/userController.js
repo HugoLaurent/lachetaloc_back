@@ -1,6 +1,10 @@
 const User = require("../models/user");
 
 const userController = {
+  /**
+   * Fonction asynchrone pour récupérer un utilisateur par son identifiant.
+   */
+
   getAnUser: async (req, res) => {
     try {
       const response = await User.findByPk(req.params.id);
@@ -10,6 +14,11 @@ const userController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Fonction asynchrone pour récupérer tous les utilisateurs.
+   */
+
   getAllUser: async (req, res) => {
     try {
       const response = await User.findAll();
@@ -19,6 +28,12 @@ const userController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Fonction asynchrone pour créer un nouvel utilisateur.
+   * Vérifie les données fournies pour créer un utilisateur valide.
+   */
+
   createAnUser: async (req, res) => {
     const user = req.body;
     if (user.pseudo === "") {
@@ -29,6 +44,7 @@ const userController = {
       return;
     }
 
+    // Vérification de l'existence du pseudo
     const pseudoAlreadyExist = await User.findOne({
       where: {
         pseudo: user.pseudo,
@@ -37,11 +53,12 @@ const userController = {
     if (pseudoAlreadyExist) {
       res.status(409).json({
         code: 409,
-        message: "The pseudo already exist",
+        message: "The pseudo already exists",
       });
       return;
     }
 
+    // Vérification du format de l'email
     const regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
     if (!regexEmail.test(user.email)) {
       res.status(422).json({
@@ -51,14 +68,13 @@ const userController = {
       return;
     }
 
-    // le regex password doit contenir une minuscule une majuscule un caractere special et un chiffre et aussi 12 caracteres minimum
+    // Vérification de la complexité du mot de passe
     const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{12,}$/;
-
     if (!regexPassword.test(user.password)) {
       res.status(422).json({
         code: 422,
         message:
-          "Password must contain at least 12 characters, one uppercase letter, one lowercase letter and one number",
+          "Password must contain at least 12 characters, one uppercase letter, one lowercase letter, and one number",
       });
       return;
     }
@@ -71,6 +87,11 @@ const userController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Fonction asynchrone pour supprimer un utilisateur par son identifiant.
+   */
+
   deleteAnUser: async (req, res) => {
     try {
       const response = await User.findByPk(req.params.id);
