@@ -9,7 +9,7 @@ const routerFollow = require("./router/follow");
 const routerAccomodation = require("./router/accomodation");
 const routerNotification = require("./router/notification");
 const authenticateToken = require("./hook/auth/authenticateToken");
-const publicController = require("./controller/publicController");
+const routerPublic = require("./router/public");
 
 const app = express();
 
@@ -22,7 +22,8 @@ app.use(function (req, res, next) {
   next();
 });
 app.use(express.json());
-app.use("/", publicController.getAllAccomodation);
+
+app.use("/public", routerPublic);
 
 app.use("/accomodations", authenticateToken, routerAccomodation);
 

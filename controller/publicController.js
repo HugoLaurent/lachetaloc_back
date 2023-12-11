@@ -1,6 +1,16 @@
+const { log } = require("console");
 const Accomodation = require("../models/accomodation");
+const path = require("path");
 
 const publicController = {
+  /**
+   * Récupere l'image et l'envoie au client.
+   */
+  sendImageToClient: async (req, res) => {
+    const imagePath = path.join(__dirname, "../");
+    const response = await Accomodation.findByPk(req.params.id);
+    res.sendFile(imagePath + response.dataValues.picture);
+  },
   /**
    * Fonction asynchrone pour récupérer une seule accommodation par son identifiant.
    */
