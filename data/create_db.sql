@@ -8,7 +8,7 @@ CREATE TABLE
     IF NOT EXISTS "location" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         "departement" TEXT,
-        "code" INTEGER NOT NULL
+        "code" TEXT NOT NULL
     );
 
 CREATE TABLE
