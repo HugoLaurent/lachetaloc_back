@@ -12,8 +12,16 @@ const authenticateToken = require("./hook/auth/authenticateToken");
 const publicController = require("./controller/publicController");
 
 const app = express();
-app.use(express.json());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // Autoriser toutes les origines
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
+app.use(express.json());
 app.use("/", publicController.getAllAccomodation);
 
 app.use("/accomodations", authenticateToken, routerAccomodation);
