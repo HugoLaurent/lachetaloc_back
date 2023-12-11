@@ -2,6 +2,10 @@ const Notification = require("../models/notification");
 const User = require("../models/user");
 
 const notificationController = {
+  /**
+   * Récupère les notifications pour un utilisateur spécifique.
+   */
+
   getNotificationsByUser: async (req, res) => {
     try {
       const notifications = await Notification.findAll({
@@ -15,6 +19,10 @@ const notificationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Crée une nouvelle notification pour l'utilisateur actuel.
+   */
 
   createNotification: async (req, res) => {
     console.log("req.body", req.body);
@@ -30,6 +38,11 @@ const notificationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Marque une notification comme lue.
+   */
+
   notificationRead: async (req, res) => {
     try {
       const notification = await Notification.update(

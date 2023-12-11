@@ -1,8 +1,12 @@
 const Follow = require("../models/follow");
-const accomodation = require("../models/accomodation");
+const Accommodation = require("../models/accomodation");
 const { Op } = require("sequelize");
 
 const followController = {
+  /**
+   * Crée un suivi pour une accommodation spécifique par un utilisateur.
+   */
+
   followAccomodation: async (req, res) => {
     try {
       await Follow.create({
@@ -15,6 +19,11 @@ const followController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Récupère les accommodations suivies par un utilisateur spécifique.
+   */
+
   getAccomodationFollowed: async (req, res) => {
     try {
       const response = await Follow.findAll({
@@ -22,17 +31,20 @@ const followController = {
           user_id: req.user.id,
         },
       });
+
       const resultTotal = [];
       response.forEach((follow) => {
         resultTotal.push(follow.dataValues.accomodation_id);
       });
-      const accomodations = await accomodation.findAll({
+
+      const accomodations = await Accommodation.findAll({
         where: {
           id: {
-            [Op.any]: `{${resultTotal}}`,
+            [Op.in]: resultTotal,
           },
         },
       });
+
       res.json(accomodations);
     } catch (error) {
       console.trace(error);

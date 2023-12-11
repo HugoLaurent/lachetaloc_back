@@ -15,16 +15,20 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single("image");
 
 const accomodationController = {
+  /**
+   * Crée une nouvelle accommodation avec les données fournies.
+   * Gère également le téléchargement d'image via Multer.
+   */
   createAccomodation: async (req, res) => {
     upload(req, res, async (err) => {
+      // Gestion des erreurs de téléchargement via Multer
       if (err instanceof multer.MulterError) {
-        // Une erreur Multer s'est produite lors du téléchargement
         return res.status(500).json(err);
       } else if (err) {
-        // Une erreur inattendue s'est produite lors du téléchargement
         return res.status(500).json(err);
       }
 
+      // Validation des données pour créer une nouvelle accommodation
       if (
         !req.body.title ||
         !req.body.description ||
@@ -36,16 +40,16 @@ const accomodationController = {
         return res.status(400).json("Veuillez remplir tous les champs");
       }
 
+      // Validation des types et des formats de données
       if (
         typeof req.body.title !== "string" ||
         req.body.title.length < 2 ||
         req.body.title.length > 20
       ) {
         return res
-
           .status(400)
           .json(
-            "Le titre doit être une chaine de caractère et contenir entre 2 et 20 caractères"
+            "Le titre doit être une chaîne de caractères entre 2 et 20 caractères"
           );
       }
 
@@ -55,10 +59,9 @@ const accomodationController = {
         req.body.description.length > 200
       ) {
         return res
-
           .status(400)
           .json(
-            "La description doit être une chaine de caractère et contenir entre 50 et 200 caractères"
+            "La description doit être une chaîne de caractères entre 50 et 200 caractères"
           );
       }
 
@@ -67,7 +70,7 @@ const accomodationController = {
       }
 
       if (isNaN(Date.parse(req.body.end_of_contract))) {
-        return res.status(400).json("La date doit être une date");
+        return res.status(400).json("La date doit être une date valide");
       }
 
       if (isNaN(req.body.room_id)) {
@@ -79,8 +82,9 @@ const accomodationController = {
       }
 
       try {
-        const imagePath = req.file ? req.file.path : null; // Récupération du chemin de l'image
+        const imagePath = req.file ? req.file.path : null; // Chemin de l'image téléchargée
 
+        // Création de l'accommodation dans la base de données
         const accomodation = await Accomodation.create({
           title: req.body.title,
           description: req.body.description,
@@ -99,6 +103,10 @@ const accomodationController = {
       }
     });
   },
+
+  /**
+   * Récupère une accommodation spécifique par son identifiant.
+   */
   getOneAccomodation: async (req, res) => {
     try {
       const response = await Accomodation.findByPk(req.params.id);
@@ -108,6 +116,10 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Récupère toutes les accommodations.
+   */
   getAllAccomodation: async (req, res) => {
     try {
       const response = await Accomodation.findAll();
@@ -117,6 +129,10 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Récupère les accommodations d'un utilisateur spécifique.
+   */
   getAccomodationByUser: async (req, res) => {
     try {
       const response = await Accomodation.findAll({
@@ -136,6 +152,10 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Récupère les accommodations en fonction du nombre de pièces.
+   */
   getAccomodationByRoom: async (req, res) => {
     try {
       const response = await Accomodation.findAll({
@@ -147,7 +167,7 @@ const accomodationController = {
         res
           .status(404)
           .json(
-            "Aucun logement Avec le nombre de pièces demandé n'a été trouvé"
+            "Aucun logement avec le nombre de pièces demandé n'a été trouvé"
           );
       } else {
         res.json(response);
@@ -157,6 +177,10 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Récupère les accommodations dans une région spécifique.
+   */
   getAccomodationByLocation: async (req, res) => {
     try {
       const response = await Accomodation.findAll({
@@ -176,9 +200,11 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Supprime les informations personnelles d'une accommodation (modification du user_id).
+   */
   deletePersonalInformation: async (req, res) => {
-    console.log(req.user.id);
-    //fais moi une fonction qui change les champs title en 'toNotDisplay'
     try {
       const accomodation = await Accomodation.findByPk(req.params.id);
       if (accomodation.user_id === req.user.id) {

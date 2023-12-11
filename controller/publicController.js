@@ -1,6 +1,9 @@
 const Accomodation = require("../models/accomodation");
 
 const publicController = {
+  /**
+   * Fonction asynchrone pour récupérer une seule accommodation par son identifiant.
+   */
   getOneAccomodation: async (req, res) => {
     try {
       const response = await Accomodation.findByPk(req.params.id);
@@ -10,6 +13,10 @@ const publicController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Fonction asynchrone pour récupérer toutes les accommodations.
+   */
   getAllAccomodation: async (req, res) => {
     try {
       const response = await Accomodation.findAll();
@@ -20,6 +27,9 @@ const publicController = {
     }
   },
 
+  /**
+   * Fonction asynchrone pour récupérer les accommodations par le nombre de pièces.
+   */
   getAccomodationByRoom: async (req, res) => {
     try {
       const response = await Accomodation.findAll({
@@ -31,7 +41,7 @@ const publicController = {
         res
           .status(404)
           .json(
-            "Aucun logement Avec le nombre de pièces demandé n'a été trouvé"
+            "Aucun logement avec le nombre de pièces demandé n'a été trouvé"
           );
       } else {
         res.json(response);
@@ -41,6 +51,10 @@ const publicController = {
       res.status(500).json(error);
     }
   },
+
+  /**
+   * Fonction asynchrone pour récupérer les accommodations par l'identifiant de localisation.
+   */
   getAccomodationByLocation: async (req, res) => {
     try {
       const response = await Accomodation.findAll({
