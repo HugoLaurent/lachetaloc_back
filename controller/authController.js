@@ -11,6 +11,7 @@ const authController = {
 
   login: async (req, res) => {
     const { pseudo, password } = req.body;
+    console.log(pseudo, password);
 
     // Vérifie si l'utilisateur existe dans la base de données
     const user = await User.findOne({
@@ -19,8 +20,12 @@ const authController = {
       },
     });
 
+    console.log(user);
+    console.log(password);
+    const compareOk = await bcrypt.compare(password, user.dataValues.password);
+
     // Vérifie si l'utilisateur existe et si le mot de passe est correct
-    if (user && bcrypt.compare(password, user.dataValues.password)) {
+    if (user && compareOk) {
       // Génère un jeton d'accès
       const token = jwt.sign(
         {
@@ -45,10 +50,13 @@ const authController = {
       return res.json({ token, refreshToken });
     }
     // Si l'authentification échoue, renvoie un message d'erreur d'authentification
-    return res.status(401).json({ error: "Invalid Credentials" });
+    if (!user)
+      return res.status(401).json({ error: "L'utilisateur n'existe pas" });
+    if (!compareOk)
+      return res.status(401).json({ error: "Mot de passe invalide" });
   },
   refresh: (req, res) => {
-    const refreshToken = req.body.token;
+    const refreshToken = req.body.refreshToken;
     if (!refreshToken) return res.sendStatus(401);
     jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err) return res.sendStatus(403);
