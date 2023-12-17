@@ -13,12 +13,16 @@ const routerPublic = require("./router/public");
 
 const app = express();
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // Autoriser toutes les origines
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173"); // ou votre domaine spécifique au lieu de '*'
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+    return res.status(200).json({});
+  }
   next();
 });
 app.use(express.json());

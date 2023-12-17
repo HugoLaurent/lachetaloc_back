@@ -36,7 +36,7 @@ const followController = {
         resultTotal.push(follow.dataValues.accomodation_id);
       });
 
-      const accomodations = await Accommodation.findAll({
+      const accomodations = await Accomodation.findAll({
         where: {
           id: {
             [Op.in]: resultTotal,
