@@ -3,6 +3,29 @@ const path = require("path");
 
 const publicController = {
   /**
+   * Fonction asynchrone pour récupérer une seule accommodation par son identifiant.
+   */
+  getAccomodation: async (req, res) => {
+    try {
+      const response = await Accomodation.findByPk(req.params.id, {
+        include: [
+          {
+            model: Location,
+            attributes: ["departement"],
+          },
+        ],
+      });
+
+      if (response !== null) {
+        return res.json(response);
+      }
+      return res.status(404).json("Aucun logement trouvé");
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
+  /**
    * Récupere l'image et l'envoie au client.
    */
   sendImageToClient: async (req, res) => {
@@ -28,17 +51,14 @@ const publicController = {
    */
   getAllAccomodation: async (req, res) => {
     try {
-      const response = await Accomodation.findAll(
-        //fais moi la jointure avec la table location pour recuperer departement avec l'id
-        {
-          include: [
-            {
-              model: Location,
-              attributes: ["departement"],
-            },
-          ],
-        }
-      );
+      const response = await Accomodation.findAll({
+        include: [
+          {
+            model: Location,
+            attributes: ["departement"],
+          },
+        ],
+      });
       res.json(response);
     } catch (error) {
       console.trace(error);
