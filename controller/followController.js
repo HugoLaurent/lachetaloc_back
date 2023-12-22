@@ -8,6 +8,15 @@ const followController = {
 
   followAccomodation: async (req, res) => {
     try {
+      const existingFollow = await Follow.findOne({
+        where: {
+          user_id: req.user.id,
+          accomodation_id: req.params.id,
+        },
+      });
+      if (existingFollow) {
+        return res.status(409).json({ error: "Vous suivez déjà ce logement" });
+      }
       await Follow.create({
         user_id: req.user.id,
         accomodation_id: req.params.id,
