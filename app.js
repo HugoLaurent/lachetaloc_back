@@ -12,6 +12,7 @@ const authenticateToken = require("./hook/auth/authenticateToken");
 const routerPublic = require("./router/public");
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); // ou votre domaine spécifique au lieu de '*'
@@ -39,6 +40,6 @@ app.use("/auth", authRouter);
 
 app.use("/notifications", authenticateToken, routerNotification);
 
-app.listen(3000, () => {
-  console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
 });
