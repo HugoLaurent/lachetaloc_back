@@ -11,21 +11,25 @@ const routerNotification = require("./router/notification");
 const authenticateToken = require("./hook/auth/authenticateToken");
 const routerPublic = require("./router/public");
 
+const cors = require("cors");
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*"); // ou votre domaine spécifique au lieu de '*'
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-});
+app.use(cors({ origin: "https://lachetaloc.vercel.app" }));
+
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*"); // ou votre domaine spécifique au lieu de '*'
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   if (req.method === "OPTIONS") {
+//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
+//     return res.status(200).json({});
+//   }
+//   next();
+// });
 app.use(express.json());
 
 app.use("/public", routerPublic);
