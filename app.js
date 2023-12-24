@@ -16,8 +16,11 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({ origin: "https://lachetaloc.vercel.app" }));
-app.use(cors({ origin: "http://127.0.0.1:5173" }));
+const corsOptions = {
+  origin: ["https://lachetaloc.vercel.app", "http://127.0.0.1:5173"],
+};
+
+app.use(cors(corsOptions));
 
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*"); // ou votre domaine spécifique au lieu de '*'
