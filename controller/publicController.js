@@ -133,6 +133,18 @@ const publicController = {
       res.status(500).json(error);
     }
   },
+  /**
+   * Fonction asynchrone pour récupérer toutes les localisations.
+   */
+  getAllLocation: async (req, res) => {
+    try {
+      const response = await Location.findAll();
+      res.json(response);
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
 };
 
 module.exports = publicController;
