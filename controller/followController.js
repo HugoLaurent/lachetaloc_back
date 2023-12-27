@@ -31,7 +31,7 @@ const followController = {
   /**
    * Supprime un suivi pour une accommodation spécifique par un utilisateur.
    */
-   deleteFollowAccomodation: async (req, res) => {
+  deleteFollowAccomodation: async (req, res) => {
     try {
       const existingFollow = await Follow.findOne({
         where: {
@@ -40,16 +40,17 @@ const followController = {
         },
       });
       if (!existingFollow) {
-        return res.status(409).json({ error: "Vous ne suivez pas ce logement" });
+        return res
+          .status(409)
+          .json({ error: "Vous ne suivez pas ce logement" });
       }
       await existingFollow.destroy();
       res.json({ follow: false });
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);
-    } 
-
-
+    }
+  },
   /**
    * Récupère les accommodations suivies par un utilisateur spécifique.
    */
