@@ -33,7 +33,7 @@ const authController = {
           pseudo: user.dataValues.pseudo,
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "5000" }
+        { expiresIn: "24h" }
       );
       // Génère un jeton de rafraîchissement
       const refreshToken = jwt.sign(
