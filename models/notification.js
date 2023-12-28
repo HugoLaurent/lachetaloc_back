@@ -26,6 +26,10 @@ const notification = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    accomodation_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   },
   { timestamps: false, tableName: "notification" }
 );
