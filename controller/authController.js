@@ -41,7 +41,7 @@ const authController = {
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: "7d" }
       );
-
+      console.log("ici");
       // Renvoie les jetons d'authentification
       return res.json({
         token,
@@ -52,8 +52,8 @@ const authController = {
     // Si l'authentification échoue, renvoie un message d'erreur d'authentification
     if (!user)
       return res.status(401).json({ error: "L'utilisateur n'existe pas" });
-    if (!compareOk)
-      return res.status(401).json({ error: "Mot de passe invalide" });
+    if (!compareOk) console.log("la");
+    return res.status(401).json({ error: "Mot de passe invalide" });
   },
   refresh: (req, res) => {
     const refreshToken = req.body.refreshToken;
