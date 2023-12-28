@@ -18,7 +18,7 @@ const authController = {
         pseudo,
       },
     });
-
+    console.log(user.dataValues);
     const compareOk = await bcrypt.compare(password, user.dataValues.password);
 
     // Vérifie si l'utilisateur existe et si le mot de passe est correct
