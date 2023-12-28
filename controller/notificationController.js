@@ -27,11 +27,9 @@ const notificationController = {
     console.log("req.body", req.body);
     try {
       const notification = await Notification.create({
-        title: "Nouveau contact",
         message: `Vous avez une nouvelle demande de contact de la part de ${req.user.pseudo}`,
         user_id: req.user.id,
         read: false,
-        accomodation_id: 27,
       });
       res.json(notification);
     } catch (error) {
