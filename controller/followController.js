@@ -45,7 +45,7 @@ const followController = {
           .json({ error: "Vous ne suivez pas ce logement" });
       }
       await existingFollow.destroy();
-      res.json({ message: "Delete successful" });
+      res.json({ message: "Vous ne suivez plus ce logement" });
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);

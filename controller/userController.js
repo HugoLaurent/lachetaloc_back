@@ -39,7 +39,7 @@ const userController = {
     if (user.pseudo === "") {
       res.status(422).json({
         code: 422,
-        message: "The pseudo is empty",
+        message: "Le pseudo est obligatoire",
       });
       return;
     }
@@ -53,7 +53,7 @@ const userController = {
     if (pseudoAlreadyExist) {
       res.status(409).json({
         code: 409,
-        message: "The pseudo already exists",
+        message: "Le pseudo existe déjà",
       });
       return;
     }
@@ -63,7 +63,7 @@ const userController = {
     if (!regexEmail.test(user.email)) {
       res.status(422).json({
         code: 422,
-        message: "The email is not valid",
+        message: "L'email n'est pas valide",
       });
       return;
     }
@@ -74,7 +74,7 @@ const userController = {
       res.status(422).json({
         code: 422,
         message:
-          "Password must contain at least 12 characters, one uppercase letter, one lowercase letter, and one number",
+          "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial",
       });
       return;
     }

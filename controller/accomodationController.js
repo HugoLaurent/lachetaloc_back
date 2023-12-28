@@ -22,7 +22,9 @@ const accomodationController = {
         return res.status(500).json(err);
       } else if (err) {
         // Une erreur inattendue s'est produite lors du téléchargement
-        return res.status(500).json(err);
+        return res
+          .status(500)
+          .json("Une erreur inattendue s'est produite lors du téléchargement");
       }
 
       if (
@@ -178,7 +180,6 @@ const accomodationController = {
   },
   deletePersonalInformation: async (req, res) => {
     console.log(req.user.id);
-    //fais moi une fonction qui change les champs title en 'toNotDisplay'
     try {
       const accomodation = await Accomodation.findByPk(req.params.id);
       if (accomodation.user_id === req.user.id) {

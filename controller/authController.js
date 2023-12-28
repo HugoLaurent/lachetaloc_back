@@ -11,7 +11,6 @@ const authController = {
 
   login: async (req, res) => {
     const { pseudo, password } = req.body;
-    console.log(pseudo, password);
 
     // Vérifie si l'utilisateur existe dans la base de données
     const user = await User.findOne({
@@ -20,8 +19,6 @@ const authController = {
       },
     });
 
-    console.log(user);
-    console.log(password);
     const compareOk = await bcrypt.compare(password, user.dataValues.password);
 
     // Vérifie si l'utilisateur existe et si le mot de passe est correct
@@ -45,9 +42,12 @@ const authController = {
         { expiresIn: "7d" }
       );
 
-      console.log(token, refreshToken);
       // Renvoie les jetons d'authentification
-      return res.json({ token, refreshToken });
+      return res.json({
+        token,
+        refreshToken,
+        message: "Vous êtes authentifié!",
+      });
     }
     // Si l'authentification échoue, renvoie un message d'erreur d'authentification
     if (!user)
