@@ -18,7 +18,11 @@ const authController = {
         pseudo,
       },
     });
-    console.log(user.dataValues);
+
+    if (!user) {
+      return res.status(401).json({ error: "L'utilisateur n'existe pas" });
+    }
+
     const compareOk = await bcrypt.compare(password, user.dataValues.password);
 
     // Vérifie si l'utilisateur existe et si le mot de passe est correct
@@ -50,10 +54,10 @@ const authController = {
       });
     }
     // Si l'authentification échoue, renvoie un message d'erreur d'authentification
-    if (!user)
-      return res.status(401).json({ error: "L'utilisateur n'existe pas" });
-    if (!compareOk) console.log("la");
-    return res.status(401).json({ error: "Mot de passe invalide" });
+
+    if (!compareOk) {
+      return res.status(401).json({ error: "Mot de passe invalide" });
+    }
   },
   refresh: (req, res) => {
     const refreshToken = req.body.refreshToken;
