@@ -45,12 +45,12 @@ User.hasMany(Notification, {
 });
 
 // Relation entre Notification et Accomodation (Logement)
-Notification.belongsTo(Accomodation, {
-  foreignKey: "accomodation_id",
-});
-Accomodation.hasMany(Notification, {
-  foreignKey: "accomodation_id",
-});
+// Notification.belongsTo(Accomodation, {
+//   foreignKey: "accomodation_id",
+// });
+// Accomodation.hasMany(Notification, {
+//   foreignKey: "accomodation_id",
+// });
 
 //fais la relation entre user et notification
 User.hasMany(Notification, {
