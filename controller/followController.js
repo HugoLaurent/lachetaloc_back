@@ -71,6 +71,12 @@ const followController = {
       });
       console.log(resultTotal, "REGARDE ICI");
 
+      const toReturn = [];
+      for (let i = 0; i < resultTotal.length; i++) {
+        const accomodations = await Accomodation.findByPk(resultTotal[i]);
+        toReturn.push(accomodations);
+      }
+      console.log(toReturn, "REGARDE ICI ICI ICI ICI");
       const accomodations = await Accomodation.findAll({
         where: {
           id: {
