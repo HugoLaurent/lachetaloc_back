@@ -55,28 +55,38 @@ const followController = {
    * Récupère les accommodations suivies par un utilisateur spécifique.
    */
 
+  // getAccomodationFollowed: async (req, res) => {
+  //   try {
+  //     const response = await Follow.findAll({
+  //       where: {
+  //         user_id: req.user.id,
+  //       },
+  //     });
+
+  //     const resultTotal = [];
+  //     response.forEach((follow) => {
+  //       resultTotal.push(follow.dataValues.accomodation_id);
+  //     });
+
+  //     const accomodations = await Accomodation.findAll({
+  //       where: {
+  //         id: {
+  //           [Op.in]: resultTotal,
+  //         },
+  //       },
+  //     });
+
+  //     res.json(accomodations);
+  //   } catch (error) {
+  //     console.trace(error);
+  //     res.status(500).json(error);
+  //   }
+  // },
+
   getAccomodationFollowed: async (req, res) => {
     try {
-      const response = await Follow.findAll({
-        where: {
-          user_id: req.user.id,
-        },
-      });
-
-      const resultTotal = [];
-      response.forEach((follow) => {
-        resultTotal.push(follow.dataValues.accomodation_id);
-      });
-
-      const accomodations = await Accomodation.findAll({
-        where: {
-          id: {
-            [Op.in]: resultTotal,
-          },
-        },
-      });
-
-      res.json(accomodations);
+      const response = await Follow.findAll();
+      res.json(response);
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);
