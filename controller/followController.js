@@ -87,7 +87,7 @@ const followController = {
     try {
       const response = await Follow.findAll({
         where: {
-          user_id: req.user_id,
+          user_id: req.user.id,
         },
       });
       res.json(response);
