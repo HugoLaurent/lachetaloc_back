@@ -69,6 +69,7 @@ const followController = {
       response.forEach((follow) => {
         resultTotal.push(follow.dataValues.accomodation_id);
       });
+      console.log(resultTotal, "REGARDE ICI");
 
       const accomodations = await Accomodation.findAll({
         where: {
