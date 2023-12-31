@@ -63,6 +63,8 @@ const followController = {
         },
       });
 
+      console.log(response);
+
       const resultTotal = [];
       response.forEach((follow) => {
         resultTotal.push(follow.dataValues.accomodation_id);
