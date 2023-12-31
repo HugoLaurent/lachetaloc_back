@@ -1,5 +1,5 @@
 const { Accomodation, Follow } = require("../models");
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 
 const followController = {
   /**
@@ -85,7 +85,11 @@ const followController = {
 
   getAccomodationFollowed: async (req, res) => {
     try {
-      const response = await Follow.findAll();
+      const response = await Follow.findAll({
+        where: {
+          user_id: req.user_id,
+        },
+      });
       res.json(response);
     } catch (error) {
       console.trace(error);
