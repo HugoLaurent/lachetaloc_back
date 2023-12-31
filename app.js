@@ -40,7 +40,7 @@ app.use("/public", routerPublic);
 
 app.use("/accomodations", authenticateToken, routerAccomodation);
 
-app.use("/users", routerUser);
+app.use("/users", authenticateToken, routerUser);
 
 app.use("/follows", authenticateToken, routerFollow);
 
