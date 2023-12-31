@@ -75,7 +75,7 @@ const followController = {
           },
         },
       });
-
+      console.log(accomodations);
       res.json(accomodations);
     } catch (error) {
       console.trace(error);
