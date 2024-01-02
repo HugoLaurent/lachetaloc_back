@@ -20,9 +20,7 @@ const authController = {
     });
 
     if (!user) {
-      return res
-        .status(401)
-        .json({ error: "Nom d'utilisateur ou mot de passe incorrect" });
+      return res.status(401).json({ error: "L'utilisateur n'existe pas" });
     }
 
     const compareOk = await bcrypt.compare(password, user.dataValues.password);
@@ -58,9 +56,7 @@ const authController = {
     // Si l'authentification échoue, renvoie un message d'erreur d'authentification
 
     if (!compareOk) {
-      return res
-        .status(401)
-        .json({ error: "Nom d'utilisateur ou mot de passe incorrect" });
+      return res.status(401).json({ error: "Mot de passe invalide" });
     }
   },
   refresh: (req, res) => {

@@ -10,6 +10,4 @@ router.get("/getLocation/:id", publicController.getLocation);
 router.get("/getAccomodation/:id", publicController.getAccomodation);
 router.get("/getAllLocation", publicController.getAllLocation);
 
-router.post("/create", publicController.createAnUser);
-
 module.exports = router;
