@@ -81,7 +81,7 @@ const userController = {
 
     try {
       const response = await User.create(user);
-      res.json(response);
+      res.json({ response, message: "Vous êtes inscrit !" });
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);

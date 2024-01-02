@@ -45,8 +45,6 @@ const authController = {
         process.env.REFRESH_TOKEN_SECRET,
         { expiresIn: "7d" }
       );
-      console.log("ici");
-      // Renvoie les jetons d'authentification
       return res.json({
         token,
         refreshToken,
