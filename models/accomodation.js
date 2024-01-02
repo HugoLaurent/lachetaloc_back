@@ -26,7 +26,7 @@ const accomodation = sequelize.define(
       allowNull: false,
     },
     picture: {
-      type: DataTypes.BLOB("long"),
+      type: DataTypes.STRING,
       allowNull: true,
     },
     room_id: {
