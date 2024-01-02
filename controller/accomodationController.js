@@ -110,26 +110,8 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
-  getAccomodationByUser: async (req, res) => {
-    try {
-      const response = await Accomodation.findAll({
-        where: {
-          user_id: req.params.user,
-        },
-      });
-      if (response.length === 0 || typeof response === "undefined") {
-        res
-          .status(404)
-          .json("Aucun logement occupé par cet utilisateur n'a été trouvé");
-      } else {
-        res.json(response);
-      }
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error);
-    }
-  },
-  deletePersonalInformation: async (req, res) => {
+
+  deleteAccomodation: async (req, res) => {
     console.log(req.user.id);
     try {
       const accomodation = await Accomodation.findByPk(req.params.id);

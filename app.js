@@ -22,31 +22,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*"); // ou votre domaine spécifique au lieu de '*'
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//   );
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-//     return res.status(200).json({});
-//   }
-//   next();
-// });
 app.use(express.json());
 
-app.use("/public", routerPublic);
-
-app.use("/accomodations", authenticateToken, routerAccomodation);
-
-app.use("/users", routerUser);
-
-app.use("/follows", authenticateToken, routerFollow);
-
-app.use("/auth", authRouter);
-
-app.use("/notifications", authenticateToken, routerNotification);
+app.use("/api/public", routerPublic);
+app.use("/api/auth", authRouter);
+app.use("/api/users", routerUser);
+app.use("/api/follows", authenticateToken, routerFollow);
+app.use("/api/accomodations", authenticateToken, routerAccomodation);
+app.use("/api/notifications", authenticateToken, routerNotification);
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);

@@ -4,15 +4,8 @@ const accomodationController = require("../controller/accomodationController");
 
 const router = express.Router();
 
-router.get("/", accomodationController.getAllAccomodation);
 router.get("/:id", accomodationController.getOneAccomodation);
-router.get("/room/:room", accomodationController.getAccomodationByRoom);
-router.get(
-  "/location/:location",
-  accomodationController.getAccomodationByLocation
-);
-router.get("/user/:user", accomodationController.getAccomodationByUser);
 router.post("/create", accomodationController.createAccomodation);
-router.put("/delete/:id", accomodationController.deletePersonalInformation);
+router.put("/delete/:id", accomodationController.deleteAccomodation);
 
 module.exports = router;

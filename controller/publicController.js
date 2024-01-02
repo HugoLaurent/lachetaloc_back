@@ -67,31 +67,6 @@ const publicController = {
   },
 
   /**
-   * Fonction asynchrone pour récupérer les accommodations par le nombre de pièces.
-   */
-  getAccomodationByRoom: async (req, res) => {
-    try {
-      const response = await Accomodation.findAll({
-        where: {
-          room_id: req.params.room,
-        },
-      });
-      if (response.length === 0 || typeof response === "undefined") {
-        res
-          .status(404)
-          .json(
-            "Aucun logement avec le nombre de pièces demandé n'a été trouvé"
-          );
-      } else {
-        res.json(response);
-      }
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error);
-    }
-  },
-
-  /**
    * Fonction asynchrone pour récupérer le departement d'une location.
    */
   getLocation: async (req, res) => {
@@ -106,18 +81,6 @@ const publicController = {
         }
       }
       return res.status(404).json("Aucune location trouvée");
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error);
-    }
-  },
-  /**
-   * Fonction asynchrone pour récupérer toutes les localisations.
-   */
-  getAllLocation: async (req, res) => {
-    try {
-      const response = await Location.findAll();
-      res.json(response);
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);
