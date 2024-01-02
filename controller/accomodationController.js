@@ -110,15 +110,6 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
-  getAllAccomodation: async (req, res) => {
-    try {
-      const response = await Accomodation.findAll();
-      res.json(response);
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error);
-    }
-  },
   getAccomodationByUser: async (req, res) => {
     try {
       const response = await Accomodation.findAll({
@@ -138,46 +129,6 @@ const accomodationController = {
       res.status(500).json(error);
     }
   },
-  getAccomodationByRoom: async (req, res) => {
-    try {
-      const response = await Accomodation.findAll({
-        where: {
-          room_id: req.params.room,
-        },
-      });
-      if (response.length === 0 || typeof response === "undefined") {
-        res
-          .status(404)
-          .json(
-            "Aucun logement Avec le nombre de pièces demandé n'a été trouvé"
-          );
-      } else {
-        res.json(response);
-      }
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error);
-    }
-  },
-  getAccomodationByLocation: async (req, res) => {
-    try {
-      const response = await Accomodation.findAll({
-        where: {
-          location_id: req.params.location,
-        },
-      });
-      if (response.length === 0 || typeof response === "undefined") {
-        res
-          .status(404)
-          .json("Aucun logement dans la région demandée n'a été trouvé");
-      } else {
-        res.json(response);
-      }
-    } catch (error) {
-      console.trace(error);
-      res.status(500).json(error);
-    }
-  },
   deletePersonalInformation: async (req, res) => {
     console.log(req.user.id);
     try {
@@ -186,7 +137,7 @@ const accomodationController = {
         await accomodation.update({
           user_id: null,
         });
-        res.json("Les informations personnelles ont bien été supprimées");
+        res.json("Votre loc a bien été supprimé");
       } else {
         res
           .status(403)
