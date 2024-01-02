@@ -26,6 +26,18 @@ const publicController = {
     }
   },
   /**
+   * Fonction asynchrone pour récupérer toutes les localisations.
+   */
+  getAllLocation: async (req, res) => {
+    try {
+      const response = await Location.findAll();
+      res.json(response);
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
+    }
+  },
+  /**
    * Récupere l'image et l'envoie au client.
    */
   sendImageToClient: async (req, res) => {
