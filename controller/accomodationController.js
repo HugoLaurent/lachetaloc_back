@@ -17,12 +17,13 @@ const upload = multer({ storage: storage }).single("picture");
 
 const accomodationController = {
   createAccomodation: async (req, res) => {
-    const alradyPosted = Accomodation.findAll({
+    const alradyPosted = await Accomodation.findAll({
       where: {
         user_id: req.user.id,
       },
     });
     if (alradyPosted) {
+      console.log(alradyPosted);
       return res.status(403).json("Vous avez déjà posté une annonce");
     }
     if (req.user)
