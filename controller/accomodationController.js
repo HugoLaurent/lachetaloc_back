@@ -23,7 +23,7 @@ const accomodationController = {
       },
     });
     if (alradyPosted) {
-      console.log(alradyPosted, req.user.id);
+      console.log(typeof alradyPosted, req.user.id);
       return res.status(403).json("Vous avez déjà posté une annonce");
     }
     if (req.user)
