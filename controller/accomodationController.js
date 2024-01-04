@@ -22,8 +22,8 @@ const accomodationController = {
         user_id: req.user.id,
       },
     });
-    if (alradyPosted) {
-      console.log(typeof alradyPosted, req.user.id);
+    if (alradyPosted >= 1) {
+      console.log(alradyPosted, req.user.id);
       return res.status(403).json("Vous avez déjà posté une annonce");
     }
     if (req.user)
