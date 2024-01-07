@@ -5,9 +5,9 @@ const authenticateToken = require("../hook/auth/authenticateToken");
 
 const router = express.Router();
 
-router.get("/", authenticateToken, userController.getAllUser);
-router.get("/:id", authenticateToken, userController.getAnUser);
-router.post("/create", userController.createAnUser);
-router.delete("/delete/:id", authenticateToken, userController.deleteAnUser);
+router.use(authenticateToken);
+router.get("/get-one/:id", userController.getAnUser);
+router.delete("/delete", userController.deleteAnUser);
+router.patch("/update", userController.updateUser);
 
 module.exports = router;

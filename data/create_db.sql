@@ -12,12 +12,31 @@ CREATE TABLE
     );
 
 CREATE TABLE
+    IF NOT EXISTS "role" (
+        "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        "name" TEXT NOT NULL
+    );
+
+CREATE TABLE
     IF NOT EXISTS "user" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         "email" TEXT UNIQUE NOT NULL,
         "pseudo" TEXT UNIQUE NOT NULL NOT NULL,
-        "password" TEXT NOT NULL
+        "password" TEXT NOT NULL,
+        "role_id" INTEGER NOT NULL REFERENCES role(id) ON DELETE CASCADE DEFAULT 1
     );
+
+CREATE TABLE
+    IF NOT EXISTS "contact" (
+        "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+        "contact_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
+        PRIMARY KEY ("user_id", "contact_id"),
+        "accepted" BOOLEAN DEFAULT FALSE NOT NULL
+    );
+
+ALTER TABLE "contact"
+ADD
+    CONSTRAINT "unique_contact" UNIQUE ("user_id", "contact_id");
 
 CREATE TABLE
     IF NOT EXISTS "notification" (
@@ -29,7 +48,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    IF NOT EXISTS "accomodation" (
+    IF NOT EXISTS "accommodation" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         "title" TEXT NOT NULL,
         "end_of_contract" DATE NOT NULL,
@@ -49,5 +68,5 @@ CREATE TABLE
     IF NOT EXISTS "follow" (
         "id" INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         "user_id" INTEGER NOT NULL REFERENCES "user"(id) ON DELETE CASCADE,
-        "accomodation_id" INTEGER NOT NULL REFERENCES accomodation(id) ON DELETE CASCADE
+        "accommodation_id" INTEGER NOT NULL REFERENCES accommodation(id) ON DELETE CASCADE
     );

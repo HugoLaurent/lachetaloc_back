@@ -6,12 +6,14 @@ dotenv.config();
 const authRouter = require("./router/auth");
 const routerUser = require("./router/user");
 const routerFollow = require("./router/follow");
-const routerAccomodation = require("./router/accomodation");
+const routerAccommodation = require("./router/accommodation");
 const routerNotification = require("./router/notification");
 const authenticateToken = require("./hook/auth/authenticateToken");
-const routerPublic = require("./router/public");
+const routerAdmin = require("./router/admin");
+const contactRouter = require("./router/contact");
 
 const cors = require("cors");
+const isAdmin = require("./hook/auth/isAdmin");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,12 +26,13 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use("/api/public", routerPublic);
+app.use("/api/admin", authenticateToken, routerAdmin);
 app.use("/api/auth", authRouter);
-app.use("/api/users", routerUser);
-app.use("/api/follows", authenticateToken, routerFollow);
-app.use("/api/accomodations", authenticateToken, routerAccomodation);
-app.use("/api/notifications", authenticateToken, routerNotification);
+app.use("/api/user", routerUser);
+app.use("/api/follow", authenticateToken, routerFollow);
+app.use("/api/accommodation", routerAccommodation);
+app.use("/api/notification", authenticateToken, routerNotification);
+app.use("/api/contact", authenticateToken, contactRouter);
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);

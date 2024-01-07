@@ -1,38 +1,39 @@
-const Accomodation = require("./accomodation");
+const Accommodation = require("./accommodation");
 const Follow = require("./follow");
 const Location = require("./location");
 const Notification = require("./notification");
 const Room = require("./room");
 const User = require("./user");
+const Contact = require("./contact");
 
-// Relation entre Accomodation (Logement) et Location (Localisation)
-Accomodation.belongsTo(Location, {
+// Relation entre Accommodation (Logement) et Location (Localisation)
+Accommodation.belongsTo(Location, {
   foreignKey: "location_id",
 });
-Location.hasMany(Accomodation, {
+Location.hasMany(Accommodation, {
   foreignKey: "location_id",
 });
 
-// Relation entre Accomodation (Logement) et Room (Chambre)
-Accomodation.belongsTo(Room, {
+// Relation entre Accommodation (Logement) et Room (Chambre)
+Accommodation.belongsTo(Room, {
   foreignKey: "room_id",
 });
-Room.hasMany(Accomodation, {
+Room.hasMany(Accommodation, {
   foreignKey: "room_id",
 });
 
-// Relation entre User (Utilisateur) et Accomodation (Logement) à travers "follow"
-User.belongsToMany(Accomodation, { through: "follow", foreignKey: "user_id" });
-Accomodation.belongsToMany(User, {
+// Relation entre User (Utilisateur) et Accommodation (Logement) à travers "follow"
+User.belongsToMany(Accommodation, { through: "follow", foreignKey: "user_id" });
+Accommodation.belongsToMany(User, {
   through: "follow",
-  foreignKey: "accomodation_id",
+  foreignKey: "accommodation_id",
 });
 
-// Relation entre Accomodation (Logement) et User (Utilisateur)
-Accomodation.belongsTo(User, {
+// Relation entre Accommodation (Logement) et User (Utilisateur)
+Accommodation.belongsTo(User, {
   foreignKey: "user_id",
 });
-User.hasMany(Accomodation, {
+User.hasMany(Accommodation, {
   foreignKey: "user_id",
 });
 
@@ -44,12 +45,12 @@ User.hasMany(Notification, {
   foreignKey: "user_id",
 });
 
-// Relation entre Notification et Accomodation (Logement)
-// Notification.belongsTo(Accomodation, {
-//   foreignKey: "accomodation_id",
+// Relation entre Notification et Accommodation (Logement)
+// Notification.belongsTo(Accommodation, {
+//   foreignKey: "accommodation_id",
 // });
-// Accomodation.hasMany(Notification, {
-//   foreignKey: "accomodation_id",
+// Accommodation.hasMany(Notification, {
+//   foreignKey: "accommodation_id",
 // });
 
 //fais la relation entre user et notification
@@ -60,12 +61,25 @@ Notification.belongsTo(User, {
   foreignKey: "user_id",
 });
 
+// Relation entre User (Utilisateur) et Contact
+User.belongsToMany(User, {
+  through: "contact",
+  foreignKey: "user_id",
+  as: "UserContacts",
+});
+User.belongsToMany(User, {
+  through: "contact",
+  foreignKey: "contact_id",
+  as: "ContactUsers",
+});
+
 // Export des modèles
 module.exports = {
   Location,
   Room,
   User,
-  Accomodation,
+  Accommodation,
   Follow,
   Notification,
+  Contact,
 };

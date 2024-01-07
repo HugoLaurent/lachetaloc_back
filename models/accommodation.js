@@ -1,8 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const accomodation = sequelize.define(
-  "accomodation",
+const accommodation = sequelize.define(
+  "accommodation",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -42,7 +42,7 @@ const accomodation = sequelize.define(
       allowNull: false,
     },
   },
-  { tableName: "accomodation", underscored: true }
+  { tableName: "accommodation", underscored: true }
 );
 
-module.exports = accomodation;
+module.exports = accommodation;

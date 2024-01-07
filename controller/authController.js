@@ -19,11 +19,17 @@ const authController = {
     });
 
     if (!user) {
-      return res.status(401).json({ error: "L'utilisateur n'existe pas" });
+      return res
+        .status(401)
+        .json({ error: "Vos identifiants ne sont pas correctes" });
     }
 
     const compareOk = await bcrypt.compare(password, user.dataValues.password);
-
+    if (!compareOk) {
+      return res
+        .status(401)
+        .json({ error: "Vos identifiants ne sont pas correctes" });
+    }
     // Vérifie si l'utilisateur existe et si le mot de passe est correct
     if (user && compareOk) {
       // Génère un jeton d'accès
@@ -31,9 +37,10 @@ const authController = {
         {
           id: user.dataValues.id,
           pseudo: user.dataValues.pseudo,
+          is_admin: user.dataValues.is_admin,
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "15m" }
+        { expiresIn: "1h" }
       );
       // Génère un jeton de rafraîchissement
       const refreshToken = jwt.sign(
@@ -51,11 +58,67 @@ const authController = {
       });
     }
     // Si l'authentification échoue, renvoie un message d'erreur d'authentification
+  },
 
-    if (!compareOk) {
-      return res.status(401).json({ error: "Mot de passe invalide" });
+  /**
+   * Fonction asynchrone pour créer un nouvel utilisateur.
+   * Vérifie les données fournies pour créer un utilisateur valide.
+   */
+
+  signIn: async (req, res) => {
+    const user = req.body;
+    if (user.pseudo === "") {
+      res.status(422).json({
+        code: 422,
+        message: "Le pseudo est obligatoire",
+      });
+      return;
+    }
+
+    // Vérification de l'existence du pseudo
+    const pseudoAlreadyExist = await User.findOne({
+      where: {
+        pseudo: user.pseudo,
+      },
+    });
+    if (pseudoAlreadyExist) {
+      res.status(409).json({
+        code: 409,
+        message: "Le pseudo existe déjà",
+      });
+      return;
+    }
+
+    // Vérification du format de l'email
+    const regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    if (!regexEmail.test(user.email)) {
+      res.status(422).json({
+        code: 422,
+        message: "L'email n'est pas valide",
+      });
+      return;
+    }
+
+    // Vérification de la complexité du mot de passe
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{12,}$/;
+    if (!regexPassword.test(user.password)) {
+      res.status(422).json({
+        code: 422,
+        message:
+          "Le mot de passe doit contenir au moins 12 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial",
+      });
+      return;
+    }
+
+    try {
+      await User.create(user);
+      res.json({ message: "Vous êtes inscrit !" });
+    } catch (error) {
+      console.trace(error);
+      res.status(500).json(error);
     }
   },
+
   refresh: (req, res) => {
     const refreshToken = req.body.refreshToken;
     if (!refreshToken) return res.sendStatus(401);

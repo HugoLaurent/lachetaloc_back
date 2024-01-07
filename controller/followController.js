@@ -1,4 +1,4 @@
-const { Accomodation, Follow } = require("../models");
+const { Accommodation, Follow } = require("../models");
 const { Op } = require("sequelize");
 
 const followController = {
@@ -6,12 +6,12 @@ const followController = {
    * Crée un suivi pour une accommodation spécifique par un utilisateur.
    */
 
-  followAccomodation: async (req, res) => {
+  followAccommodation: async (req, res) => {
     try {
       const existingFollow = await Follow.findOne({
         where: {
           user_id: req.user.id,
-          accomodation_id: req.params.id,
+          accommodation_id: req.params.id,
         },
       });
       if (existingFollow) {
@@ -19,7 +19,7 @@ const followController = {
       }
       await Follow.create({
         user_id: req.user.id,
-        accomodation_id: req.params.id,
+        accommodation_id: req.params.id,
       });
       res.json({ follow: true });
     } catch (error) {
@@ -31,12 +31,12 @@ const followController = {
   /**
    * Supprime un suivi pour une accommodation spécifique par un utilisateur.
    */
-  deleteFollowAccomodation: async (req, res) => {
+  deleteFollowAccommodation: async (req, res) => {
     try {
       const existingFollow = await Follow.findOne({
         where: {
           user_id: req.user.id,
-          accomodation_id: req.params.id,
+          accommodation_id: req.params.id,
         },
       });
       if (!existingFollow) {
@@ -55,7 +55,7 @@ const followController = {
    * Récupère les accommodations suivies par un utilisateur spécifique.
    */
 
-  getAccomodationFollowed: async (req, res) => {
+  getAccommodationFollowed: async (req, res) => {
     try {
       const response = await Follow.findAll({
         where: {
@@ -63,29 +63,24 @@ const followController = {
         },
       });
 
-      console.log(response);
-
       const resultTotal = [];
       response.forEach((follow) => {
-        resultTotal.push(follow.dataValues.accomodation_id);
+        resultTotal.push(follow.dataValues.accommodation_id);
       });
-      console.log(resultTotal, "REGARDE ICI");
 
       const toReturn = [];
       for (let i = 0; i < resultTotal.length; i++) {
-        const accomodations = await Accomodation.findByPk(resultTotal[i]);
-        toReturn.push(accomodations);
+        const accommodations = await Accommodation.findByPk(resultTotal[i]);
+        toReturn.push(accommodations);
       }
-      console.log(toReturn, "REGARDE ICI ICI ICI ICI");
-      const accomodations = await Accomodation.findAll({
+      const accommodations = await Accommodation.findAll({
         where: {
           id: {
             [Op.in]: resultTotal,
           },
         },
       });
-      console.log(accomodations);
-      res.json(accomodations);
+      res.json(accommodations);
     } catch (error) {
       console.trace(error);
       res.status(500).json(error);

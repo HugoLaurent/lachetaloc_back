@@ -1,10 +1,10 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 
-const follow = sequelize.define(
-  "follow",
+const contact = sequelize.define(
+  "contact",
   {
-    accommodation_id: {
+    contact_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -12,8 +12,12 @@ const follow = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    accepted: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   },
-  { timestamps: false, tableName: "follow" }
+  { timestamps: false, tableName: "contact" }
 );
 
-module.exports = follow;
+module.exports = contact;

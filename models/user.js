@@ -10,6 +10,7 @@ const user = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+
     pseudo: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -28,6 +29,11 @@ const user = sequelize.define(
         const hashedPassword = bcrypt.hashSync(value, 10);
         this.setDataValue("password", hashedPassword);
       },
+    },
+    role_id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 1,
     },
   },
   { timestamps: false, tableName: "user" }
