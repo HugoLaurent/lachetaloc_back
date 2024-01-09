@@ -18,123 +18,123 @@ INSERT INTO
 VALUES (
         'user1@example.com',
         'john_doe',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user2@example.com',
         'jane_smith',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user3@example.com',
         'bob_jones',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user4@example.com',
         'alice_jackson',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user5@example.com',
         'peter_parker',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user6@example.com',
         'mary_watson',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user7@example.com',
         'bruce_wayne',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user8@example.com',
         'selina_kyle',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user9@example.com',
         'clark_kent',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user10@example.com',
         'lois_lane',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user11@example.com',
         'tony_stark',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user12@example.com',
         'natasha_romanoff',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user13@example.com',
         'steve_rogers',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user14@example.com',
         'wanda_maximoff',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user15@example.com',
         'bruce_banner',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user16@example.com',
         'diana_prince',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user17@example.com',
         'barry_allen',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user18@example.com',
         'hal_jordan',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user19@example.com',
         'arthur_curry',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user20@example.com',
         'logan_howell',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user21@example.com',
         'ororo_munroe',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user22@example.com',
         'charles_xavier',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user23@example.com',
         'jean_grey',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user24@example.com',
         'scott_summers',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user25@example.com',
         'hank_mccoy',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user26@example.com',
         'kitty_pryde',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user27@example.com',
         'wolverine_logan',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user28@example.com',
         'rogue_marie',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user29@example.com',
         'gambit_remy',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     ), (
         'user30@example.com',
         'stormy_weather',
-        '$2b$10$zhSgfpKnKI0CqBXO6vQe2.lA29/ozBhJvql7XsnA7LRtb7mU2JAOy'
+        '$2b$10$1GbaOcp/cI1GuUNmb8OXuO3GiXXeLTs/cDKw6o3sB0M0Qza9O1IbG'
     );
 
 INSERT INTO
@@ -164,17 +164,6 @@ INSERT INTO
         "updated_at"
     )
 VALUES (
-        'Un petit nid d''amour',
-        '2025-05-06',
-        2000,
-        'Appartement spacieux, baigné de lumière naturelle, offrant une vue imprenable sur la ville et les montagnes environnantes, situé à proximité des commodités du centre-ville.',
-        'images/pictures/1702323588818.jpg',
-        2,
-        1,
-        76,
-        '2023-12-11 19:37:34.746',
-        '2023-12-11 19:37:34.746'
-    ), (
         'Paradis sur terre',
         '2024-06-08',
         1200,

@@ -37,10 +37,9 @@ const authController = {
         {
           id: user.dataValues.id,
           pseudo: user.dataValues.pseudo,
-          is_admin: user.dataValues.is_admin,
         },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "15m" }
       );
       // Génère un jeton de rafraîchissement
       const refreshToken = jwt.sign(
@@ -127,7 +126,7 @@ const authController = {
       const accessToken = jwt.sign(
         { id: user.id, pseudo: user.pseudo },
         process.env.ACCESS_TOKEN_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "15m" }
       );
       res.json({ accessToken });
     });
