@@ -8,6 +8,9 @@ const userController = {
   getAnUser: async (req, res) => {
     try {
       const response = await User.findByPk(req.params.id);
+      if (!response) {
+        return res.status(404).json("Utilisateur non trouvé");
+      }
       res.json(response);
     } catch (error) {
       console.trace(error);
